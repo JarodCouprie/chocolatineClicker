@@ -48,9 +48,9 @@ class UpgradeItem{
         if (reserveCookies < this.price){
             item.classList.add("unaffordable");
         }
-        if (reserveCookies * 1000 < (this.price)){
-            item.style.display = "none";
-        }
+        // if (reserveCookies * 1000 < (this.price)){
+        //     item.style.display = "none";
+        // }
         let itemList = document.querySelector("#container");
         item.classList.add("upgrade");
         let imageItem = document.createElement("img");
@@ -93,13 +93,20 @@ let bakerKing = new UpgradeItem("./asset/img/bakerking.png","Roi des boulangers"
 
 let itemContainer = [curseur,mamie,rouleau,four,boulangerie,boulanger,mine,usine,banque,superMamie,fusee,science,angryGrany,bakerKing];
 
-let chocolatines = 0;
-
-document.querySelector("#chocolatine").onclick = function(){
-    chocolatines+=1;
-}
+let chocolatines = (localStorage.getItem("score"));
 const score = document.querySelector("#score");
 score.innerHTML = (localStorage.getItem("score")) + " chocolatines";
-localStorage.setItem("score", chocolatines);
+
+document.querySelector("#chocolatine").onclick = function(){
+    chocolatines++;
+    localStorage.setItem("score", chocolatines);
+    score.innerHTML = (localStorage.getItem("score")) + " chocolatines";
+}
+
+
+
+
+
+
 itemContainer.forEach(item => item.addToPage(localStorage.getItem("score")));
 
