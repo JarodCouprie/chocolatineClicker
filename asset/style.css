@@ -55,6 +55,9 @@ body{
 }
 .upgradePriceTag{
     font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .upgradeCount{
     font-size: 2rem;

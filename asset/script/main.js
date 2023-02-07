@@ -48,12 +48,11 @@ class UpgradeItem{
         if (reserveCookies < this.price){
             item.classList.add("unaffordable");
         }
-        // if (reserveCookies * 100 < (this.price)){
-        //     item.style.display = "none";
-        // }
+        if (reserveCookies * 1000 < (this.price)){
+            item.style.display = "none";
+        }
         let itemList = document.querySelector("#container");
         item.classList.add("upgrade");
-        item.setAttribute("id",this.idItem);
         let imageItem = document.createElement("img");
         imageItem.setAttribute("src",this.imagePath);
         imageItem.setAttribute("alt",this.imageAlternativeText);
@@ -90,7 +89,17 @@ let tour = new UpgradeItem("./asset/img/tower.png","Tour",100000000000,0,"image 
 let fusee = new UpgradeItem("./asset/img/ship.png","Fusée",1000000000000,0,"image d'une fusée");
 let science = new UpgradeItem("./asset/img/science.png","E=mChocolatine²",10000000000000,0,"image d'une formule physique");
 let angryGrany = new UpgradeItem("./asset/img/angrygrandma.png","Super Mamie en colère",100000000000000,0,"image d'une fusée");
+let bakerKing = new UpgradeItem("./asset/img/bakerking.png","Roi des boulangers",1000000000000000,0,"image d'une fusée");
 
-let itemContainer = [curseur,mamie,rouleau,four,boulangerie,boulanger,mine,usine,banque,superMamie,fusee,science,angryGrany];
-itemContainer.forEach(item => item.addToPage(100));
+let itemContainer = [curseur,mamie,rouleau,four,boulangerie,boulanger,mine,usine,banque,superMamie,fusee,science,angryGrany,bakerKing];
+
+let chocolatines = 0;
+
+document.querySelector("#chocolatine").onclick = function(){
+    chocolatines+=1;
+}
+const score = document.querySelector("#score");
+score.innerHTML = (localStorage.getItem("score")) + " chocolatines";
+localStorage.setItem("score", chocolatines);
+itemContainer.forEach(item => item.addToPage(localStorage.getItem("score")));
 
