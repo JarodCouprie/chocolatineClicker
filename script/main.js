@@ -43,36 +43,30 @@ class UpgradeItem{
         this.imageAlternativeText = newimageAlternativeText;
     }
 
-    addToPage(reserveCookies){
-        let item = document.createElement("li");
-        if (reserveCookies < this.price){
-            item.classList.add("unaffordable");
-        }
-        // if (reserveCookies * 1000 < (this.price)){
-        //     item.style.display = "none";
-        // }
-        let itemList = document.querySelector("#container");
-        item.classList.add("upgrade");
-        let imageItem = document.createElement("img");
+    addToPage(){
+        const item = cloneTemplate("upgrade-item-template");
+        const itemList = document.querySelector("#container");
+        const imageItem = item.querySelector("img");
         imageItem.setAttribute("src",this.imagePath);
         imageItem.setAttribute("alt",this.imageAlternativeText);
-        item.appendChild(imageItem);
-        let upgradePriceAndTitleTag = document.createElement("div");
-        upgradePriceAndTitleTag.classList.add("upgradePriceTag");
-        let title = document.createElement("h2");
+        const title = item.querySelector(".tag");
         title.innerHTML = this.nameItem;
-        let priceTag = document.createElement("p");
-        priceTag.innerHTML = this.price+" chocolatines";
-        upgradePriceAndTitleTag.appendChild(title);
-        upgradePriceAndTitleTag.appendChild(priceTag);
-        let countItem = document.createElement("div");
-        countItem.classList.add("upgradeCount");
+        const itemPrice = item.querySelector(".price");
+        itemPrice.innerHTML = this.price+" chocolatines";
+        const countItem = item.querySelector(".upgrade-item-count");
         countItem.innerHTML = this.countItem;
-        item.appendChild(imageItem);
-        item.appendChild(upgradePriceAndTitleTag);
-        item.appendChild(countItem);
         itemList.appendChild(item);
     }
+}
+
+/**
+ * 
+ * @param {string} id 
+ * @returns {DocumentFragment}
+ */
+
+function cloneTemplate(id){
+    return document.querySelector("#"+id).content.cloneNode(true);
 }
 
 let curseur = new UpgradeItem("./asset/img/finger.png","Curseur",10,0,"image d'un doigt");
@@ -92,21 +86,35 @@ let angryGrany = new UpgradeItem("./asset/img/angrygrandma.png","Super Mamie en 
 let bakerKing = new UpgradeItem("./asset/img/bakerking.png","Roi des boulangers",1000000000000000,0,"image d'une fusée");
 
 let itemContainer = [curseur,mamie,rouleau,four,boulangerie,boulanger,mine,usine,banque,superMamie,fusee,science,angryGrany,bakerKing];
+itemContainer.forEach(item => item.addToPage());
 
-let chocolatines = (localStorage.getItem("score"));
+let chocolatines = parseInt(localStorage.getItem("score"));
+
 const score = document.querySelector("#score");
 score.innerHTML = (localStorage.getItem("score")) + " chocolatines";
 
+function isAffordable(chocolatines,UpgradeItem){
+    if (chocolatines < UpgradeItem.getPrice()){
+        console.log("c'est plus cher");
+    }
+    else{
+        console.log("C'est moins cher");
+    }
+}
+
+isAffordable(chocolatines,four);
+
+// if (reserveCookies < this.price){
+//     item.classList.add("unaffordable");
+// }
+// if (reserveCookies * 1000 < (this.price)){
+//     item.style.display = "none";
+// }
+
+let clickPlayer = 1;
+
 document.querySelector("#chocolatine").onclick = function(){
-    chocolatines++;
+    chocolatines+=clickPlayer;
     localStorage.setItem("score", chocolatines);
     score.innerHTML = (localStorage.getItem("score")) + " chocolatines";
 }
-
-
-
-
-
-
-itemContainer.forEach(item => item.addToPage(localStorage.getItem("score")));
-

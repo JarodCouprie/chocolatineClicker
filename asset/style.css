@@ -8,26 +8,21 @@
 }
 body{
     display: flex;
-    padding: 10px;
     overflow: hidden;
+    padding: 5px;
+    background-color: #000;
+    color: #fff;
 }
-.threePart{
+.three-part{
     height: 100vh;
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-#leftPart{
-    background: #ffffff;
-}
-#centerPart{
-    background: #ffffff;
     font-size: 2rem;
 }
-#rightPart{
-    background: #ffffff;
-}
+
+
 #container{
     width: 100%;
     display: flex;
@@ -35,15 +30,14 @@ body{
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-color: red;
-    scrollbar-width: thin;
+    padding-right: 5px;
 }
 #container::-webkit-scrollbar{
-    width: 5px;
-    background-color: red;
+    width: 6px;
+    background-color: #d6d6d6;
 }
 #container::-webkit-scrollbar-thumb{
-    background-color: blue;
+    background-color: #000;
 }
 .unaffordable{
     opacity: 0.2;
@@ -55,7 +49,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #d6d6d6;
+    background: #5c5c5c;
     border-radius: 6px;
     margin: 6px;
 }
@@ -63,12 +57,12 @@ body{
     height: 70px;
     width: 70px;
 }
-.upgradePriceTag{
+.upgrade-item-price-and-tag{
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.upgradeCount{
+.upgrade-item-count{
     font-size: 2rem;
 }
