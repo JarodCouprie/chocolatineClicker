@@ -5,27 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./asset/style.css">
-    <script type="module" src="./script/main.js"></script>
+    <script type="module" src="./functions/app.js"></script>
     <title>Chocolatine clicker</title>
 </head>
 <body>
     <section class="three-part" id="left-part">
         <h2>
-            WOOOOOOW 1
+            LOGO
         </h2>
-    </section>
-    <section class="three-part" id="center-part">
-        <p id="score">
-            0 chocolatine
-        </p>
-        <p id="chocolatine-pper-second">
+        <p id="chocolatine-per-second">
             Chocolatines / seconde
         </p>
-        <img id="chocolatine" src="./asset/img/chocolatine.png" alt="dessin d'une chocolatine">
+        <p id="chocolatine-per-click">
+            Chocolatines / click
+        </p>
+    </section>
+    <section class="three-part" id="center-part">
+        <div>
+            <h2>
+                SCORE
+            </h2>
+            <p id="score">
+                0 chocolatine
+            </p>
+            
+        </div>
+        <div>
+            <img id="chocolatine" src="./asset/img/chocolatine.png" alt="dessin d'une chocolatine">
+        </div>
     </section>
     <section class="three-part" id="right-part">
         <h2>
-            Améliorations
+            BOUTIQUE
         </h2>
         <ul id="container">
             <template id="upgrade-item-template">
